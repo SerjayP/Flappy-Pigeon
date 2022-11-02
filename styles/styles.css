@@ -2,13 +2,22 @@
     padding: 0;
     margin: 0;
 }
+@font-face {
+    font-family: FlappyFont;
+    src: url(../styles/flappy-font.ttf);
+}
+body{
+    background-color: orange;
+    font-family: FlappyFont;
+    text-align: center;
+}
 #game{
     margin: auto;
     margin-top: 15px;
     width: 700px;
     height:600px;
-    border: 1px solid black;
-    background-image: url(../images/ny-skyline.jpg);
+    border: 2px solid black;
+    background-image: url(../images/NewBackground.jpg);
     background-size: cover;
     overflow: hidden;
 }
@@ -23,9 +32,9 @@
     animation-iteration-count: infinite;
 }
 @keyframes bar{
-    0%{left: 600px;} 
+    0%{left: 700px;} 
     /* 50%{left: 275px;} */
-    100%{left: -250px;}
+    100%{left: -500px;}
     
 } 
 #pigeon{
@@ -47,4 +56,13 @@
     animation-name: bar;
     animation-duration: 4s;
     animation-iteration-count: infinite; 
+}
+h1{
+    margin-top: 20px;
+    color: aliceblue;
+    color: white;
+    font-size: 50px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    
 }
