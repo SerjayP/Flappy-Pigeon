@@ -46,5 +46,5 @@
     position: relative;
     animation-name: bar;
     animation-duration: 4s;
-    animation-iteration-count: infinite;
+    animation-iteration-count: infinite; 
 }
