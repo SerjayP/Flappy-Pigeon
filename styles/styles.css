@@ -5,27 +5,46 @@
 #game{
     margin: auto;
     margin-top: 15px;
-    width: 600px;
-    height:700px;
+    width: 700px;
+    height:600px;
     border: 1px solid black;
     background-image: url(../images/ny-skyline.jpg);
     background-size: cover;
+    overflow: hidden;
 }
 #building-crane{
-    width: 50px;
-    height: 700px;
-    background-color: black;
+    width: 100px;
+    height: 600px;
+    /* border: solid 1px black; */
     /* background-image: url(../images/done-building-with-crane.png); */
     position: relative;
-    overflow: hidden;
-    
     animation-name: bar;
-    animation-duration: 5s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
 }
 @keyframes bar{
-    0%{left: 550px;} 
+    0%{left: 600px;} 
     /* 50%{left: 275px;} */
-    100%{left: -50px;}
+    100%{left: -250px;}
     
 } 
+#pigeon{
+    width: 60px;
+    height: 60px;
+    /* border: solid 2px blue; */
+    top: 300px;
+    display: flex;
+    position: absolute;
+}
+#opening{
+    width: 100px;
+    height: 110px;
+    /* border: solid 1px black;  Border for sizing */
+    background-color: transparent;
+    top: -458px;
+    /* background-image: url(../images/done-building-with-crane.png); */
+    position: relative;
+    animation-name: bar;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
