@@ -7,20 +7,25 @@
     src: url(../styles/flappy-font.ttf);
 }
 body{
-    background-color: orange;
+    background-image: url(https://media1.giphy.com/media/l0MYRTamKvnt0Vr32/giphy.gif?cid=ecf05e47gtlc939pmn1of6jvvdz8kymh2xhc55rgb7g102fm&rid=giphy.gif&ct=g);
     font-family: FlappyFont;
+    background-size: 10vw;
     text-align: center;
 }
 #game{
     margin: auto;
     margin-top: 15px;
     width: 700px;
-    height:600px;
-    border: 2px solid black;
-    background-image: url(../images/NewBackground.jpg);
+    height:598px;
+    border: 3px solid rgb(255, 140, 0);
+    display: flex;
+    background-image: url(../images/NewBackground.jpg);  
+    background-color: #e0dd9d;
     background-size: cover;
     overflow: hidden;
+    
 }
+
 #building-crane{
     width: 100px;
     height: 600px;
@@ -30,6 +35,12 @@ body{
     animation-name: bar;
     animation-duration: 4s;
     animation-iteration-count: infinite;
+    animation-play-state: paused;
+}
+#floor{
+    position: relative;
+    right: 100px;
+    bottom: 2.5px;
 }
 @keyframes bar{
     0%{left: 700px;} 
@@ -38,12 +49,13 @@ body{
     
 } 
 #pigeon{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     /* border: solid 2px blue; */
     top: 300px;
     display: flex;
     position: absolute;
+    left: 35% ;
 }
 #opening{
     width: 100px;
@@ -56,13 +68,32 @@ body{
     animation-name: bar;
     animation-duration: 4s;
     animation-iteration-count: infinite; 
+    animation-play-state: paused;
 }
 h1{
     margin-top: 20px;
-    color: aliceblue;
     color: white;
     font-size: 50px;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: rgb(255, 153, 0);
+}
+.button{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     
+}
+h3{
+    font-size: 75px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(255, 153, 0);
+}
+.hide{
+    visibility: hidden;
 }
