@@ -1,51 +1,126 @@
 const game = document.querySelector("#game");
-const pipe = document.querySelector("#pipe1");
+const pipe1 = document.querySelector("pipe1");
+const pipe2 = document.querySelector("pipe2");
 const opening = document.querySelector("#opening");
 const bird = document.querySelector("#pigeon");
 const start = document.querySelector("#startButton");
 const restart = document.querySelector("#restartButton");
-
+const building1 = document.querySelector("#building1");
+const building2 = document.querySelector("#building2");
+const building3 = document.querySelector("#building3");
 let jumping = 0;
 let counter = 0;
 
+const allBuildings = [
+  {
+    number: 1,
+    path: "images/Building1.png",
+  },
+  {
+    number: 2,
+    path: "images/Building2.png",
+  },
+  {
+    number: 3,
+    path: "images/Building3.png",
+  },
+  {
+    number: 4,
+    path: "images/Building4.png",
+  },
+  {
+    number: 5,
+    path: "images/Building5.png",
+  },
+  {
+    number: 6,
+    path: "images/Building6.png",
+  },
+  {
+    number: 7,
+    path: "images/Building7.png",
+  },
+  {
+    number: 8,
+    path: "images/Building8.png",
+  },
+  {
+    number: 9,
+    path: "images/Building9.png",
+  },
+  {
+    number: 10,
+    path: "images/Building10.png",
+  },
+  {
+    number: 11,
+    path: "images/Building11.png",
+  },
+];
+
+// Randomize Building
+function randomizeBuilding(ele) {
+  allBuildings.forEach((location) => {
+    if (Math.ceil(Math.random() * 11) === location.number) {
+      ele.setAttribute("src", location.path);
+    }
+  });
+}
+
+// Makes animation run
 function myRunningFunction(ele) {
   document.getElementById(ele).style.animationPlayState = "running";
 }
+// make animation pause
 function myPauseFunction(ele) {
   document.getElementById(ele).style.animationPlayState = "paused";
 }
-
+// counts how many times animation ran
 opening.addEventListener("animationiteration", () => {
+  randomizeBuilding(building1);
   counter++;
+  setTimeout(function(){
+   randomizeBuilding(building2);
+  },4000)
 });
+
+
 
 function startGame() {
   document.querySelector("#startButton").classList.add("hide");
-  myRunningFunction("building-crane");
+  myRunningFunction("pipe1");
   myRunningFunction("opening");
   document.querySelector("#bird").classList.remove("hide");
+  setTimeout(function(){
+    myRunningFunction("pipe2");
+  },4000)
 }
 function jump() {
   jumping = 1;
   let jumpCount = 0;
   let jumpInterval = setInterval(function () {
+    // Returns bird position
     const characterTop = parseInt(
       window.getComputedStyle(bird).getPropertyValue("top")
     );
-    if (characterTop > 100 && jumpCount < 10) {
-      bird.style.top = characterTop - 4.5 + "px";
+    // Bottom or Top end game
+    if (characterTop > 0 && jumpCount < 10) {
+      bird.style.top = characterTop - 4 + "px";
     }
+    // Up resistance
     if (jumpCount > 12) {
       clearInterval(jumpInterval);
       jumping = 0;
       jumpCount = 0;
     }
     jumpCount++;
+    // How many times it jumps within 10milliseconds
   }, 10);
 }
+// Listens for spacebar or arrowup to jump
 window.addEventListener("keydown", (evt) => {
   console.log(evt.key);
-  if (evt.code === "Space") {
+  if (evt.code === "Space" || evt.code === "ArrowUp") {
     jump();
   }
 });
@@ -69,7 +144,7 @@ start.addEventListener("click", (evt) => {
     //   window.getComputedStyle(opening).getPropertyValue("top")
     // );
     // let cTop = -(500 - characterTop);
-    if (characterTop > 533 || characterTop < 100) {
+    if (characterTop > 533 || characterTop < 1) {
       // if (bird falls to bottom) or ()
       console.log("something");
       // alert("Game over. Score: "+(counter-1));
@@ -77,24 +152,26 @@ start.addEventListener("click", (evt) => {
       bird.style.top = 250 + "px";
       // bird.style.left = 600  + "px";
       document.querySelector("#restartButton").classList.remove("hide");
-      myPauseFunction("building-crane");
+      myPauseFunction("pipe1");
+      myPauseFunction("pipe2");
       myPauseFunction("opening");
       document.getElementById("bird").classList.add("hide");
       counter = 0;
-      document.querySelector('h3').textContent = 'Retry?'
-      document.querySelector('h3').classList.remove('hide');
+      document.querySelector("h3").textContent = "Retry?";
+      document.querySelector("h3").classList.remove("hide");
     }
   }, 10);
 });
 
 // Restart Button
 restart.addEventListener("click", (evt) => {
-    console.log("Button clicked"); 
-    pipe.classList.add('hide');
-    startGame();
-    document.querySelector("h3").classList.add("hide");
-    document.querySelector("#restartButton").classList.add("hide");
-   
-    setInterval(function(){pipe.classList.remove('hide')}, 1500);
-
+  console.log("Button clicked");
+  // pipe.classList.add("hide");
+  startGame();
+  document.querySelector("h3").classList.add("hide");
+  document.querySelector("#restartButton").classList.add("hide");
+  bird.style.top = 250 + "px";
+  // setInterval(function () {
+  // pipe.classList.remove("hide");
+  // }, 1500);
 });

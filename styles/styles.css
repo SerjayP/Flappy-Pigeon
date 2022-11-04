@@ -7,7 +7,7 @@
     src: url(../styles/flappy-font.ttf);
 }
 body{
-    background-image: url(https://media1.giphy.com/media/l0MYRTamKvnt0Vr32/giphy.gif?cid=ecf05e47gtlc939pmn1of6jvvdz8kymh2xhc55rgb7g102fm&rid=giphy.gif&ct=g);
+    background-image: url(https://media.giphy.com/media/euuaA2cwLEUuI/giphy.gif);
     font-family: FlappyFont;
     background-size: 10vw;
     text-align: center;
@@ -23,37 +23,66 @@ body{
     background-color: #e0dd9d;
     background-size: cover;
     overflow: hidden;
-    
+    text-align: center;
+    justify-content: center;
+    position: relative;
 }
 
-#building-crane{
-    width: 100px;
-    height: 600px;
+#pipe1{
+    /* width: 100px;
+    height: 600px; */
     /* border: solid 1px black; */
     /* background-image: url(../images/done-building-with-crane.png); */
     position: relative;
     animation-name: bar;
-    animation-duration: 4s;
+    animation-duration: 8s;
     animation-iteration-count: infinite;
     animation-play-state: paused;
 }
-#floor{
+#pipe2{
     position: relative;
-    right: 100px;
-    bottom: 2.5px;
+    left: 800px;
+    animation-name: bar2;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+}
+/* #pipe3{
+    position: relative;
+    animation-name: bar3;
+    animation-delay: 4s;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+} */
+#floor{
+    position: absolute;
+    top: 50px;
+
 }
 @keyframes bar{
-    0%{left: 700px;} 
+    0%{left: 800px;} 
     /* 50%{left: 275px;} */
-    100%{left: -500px;}
+    100%{left: -400px;}
     
 } 
+@keyframes bar2{
+    0%{left: 800px;} 
+    /* 50%{left: 275px;} */
+    100%{left: -800px;}
+    
+} 
+ /* @keyframes bar3{
+    0%{left: 800px;} 
+    100%{left: -700px;}
+    
+}   */
+
 #pigeon{
     width: 50px;
     height: 50px;
     /* border: solid 2px blue; */
     top: 300px;
-    display: flex;
     position: absolute;
     left: 35% ;
 }
@@ -66,7 +95,7 @@ body{
     /* background-image: url(../images/done-building-with-crane.png); */
     position: relative;
     animation-name: bar;
-    animation-duration: 4s;
+    animation-duration: 8s;
     animation-iteration-count: infinite; 
     animation-play-state: paused;
 }
@@ -85,7 +114,7 @@ h1{
     
 }
 h3{
-    font-size: 75px;
+    font-size: 50px;
     position: absolute;
     left: 50%;
     top: 30%;
