@@ -1,6 +1,6 @@
 const game = document.querySelector("#game");
-const pipe1 = document.querySelector("pipe1");
-const pipe2 = document.querySelector("pipe2");
+const pipe1 = document.querySelector("#pipe1");
+const pipe2 = document.querySelector("#pipe2");
 const opening = document.querySelector("#opening");
 const bird = document.querySelector("#pigeon");
 const start = document.querySelector("#startButton");
@@ -59,13 +59,16 @@ const allBuildings = [
 ];
 
 // Randomize Building
-function randomizeBuilding(ele) {
+function randomizeBuilding(ele, num) {
+  let randomNum = Math.ceil(Math.random() * 11)
   allBuildings.forEach((location) => {
-    if (Math.ceil(Math.random() * 11) === location.number) {
+    if (randomNum === location.number) {
+      console.log("Randomizing Building " + num)
+      // console.log(Math.ceil(Math.random() * 11));
       ele.setAttribute("src", location.path);
     }
   });
-}
+} 
 
 // Makes animation run
 function myRunningFunction(ele) {
@@ -76,24 +79,27 @@ function myPauseFunction(ele) {
   document.getElementById(ele).style.animationPlayState = "paused";
 }
 // counts how many times animation ran
-opening.addEventListener("animationiteration", () => {
-  randomizeBuilding(building1);
+randomizeBuilding(building1, 1);
+randomizeBuilding(building2, 2);
+pipe1.addEventListener("animationiteration", () => {
+  randomizeBuilding(building1, 1);
   counter++;
+  // console.log("Building1" + counter)
   setTimeout(function(){
-   randomizeBuilding(building2);
+   randomizeBuilding(building2, 2);
+   counter++
   },4000)
+  // console.log("building2" + counter)
 });
-
-
 
 function startGame() {
   document.querySelector("#startButton").classList.add("hide");
   myRunningFunction("pipe1");
   myRunningFunction("opening");
   document.querySelector("#bird").classList.remove("hide");
-  setTimeout(function(){
+  setTimeout(function () {
     myRunningFunction("pipe2");
-  },4000)
+  }, 4000);
 }
 function jump() {
   jumping = 1;
@@ -105,7 +111,7 @@ function jump() {
     );
     // Bottom or Top end game
     if (characterTop > 0 && jumpCount < 10) {
-      bird.style.top = characterTop - 4 + "px";
+      bird.style.top = characterTop - 5 + "px";
     }
     // Up resistance
     if (jumpCount > 12) {
@@ -117,9 +123,8 @@ function jump() {
     // How many times it jumps within 10milliseconds
   }, 10);
 }
-// Listens for spacebar or arrowup to jump
+// Lis tens for spacebar or arrowup to jump
 window.addEventListener("keydown", (evt) => {
-  console.log(evt.key);
   if (evt.code === "Space" || evt.code === "ArrowUp") {
     jump();
   }
@@ -146,7 +151,7 @@ start.addEventListener("click", (evt) => {
     // let cTop = -(500 - characterTop);
     if (characterTop > 533 || characterTop < 1) {
       // if (bird falls to bottom) or ()
-      console.log("something");
+      // console.log("something");
       // alert("Game over. Score: "+(counter-1));
 
       bird.style.top = 250 + "px";
@@ -165,13 +170,20 @@ start.addEventListener("click", (evt) => {
 
 // Restart Button
 restart.addEventListener("click", (evt) => {
-  console.log("Button clicked");
+  // console.log("Button clicked");
   // pipe.classList.add("hide");
-  startGame();
-  document.querySelector("h3").classList.add("hide");
-  document.querySelector("#restartButton").classList.add("hide");
-  bird.style.top = 250 + "px";
+  randomizeBuilding(building1, 1);
+  randomizeBuilding(building2, 2);
+  window.location.reload();
+  // startGame();
+  // document.querySelector("h3").classList.add("hide");
+  // document.querySelector("#restartButton").classList.add("hide");
+  // bird.style.top = 250 + "px";
   // setInterval(function () {
   // pipe.classList.remove("hide");
   // }, 1500);
 });
+
+// Things to talk to Teo about:
+// 1. how to reset keyframes in JS DOM
+// 2. Why is it taking random seconds to invoke randomize function
