@@ -33,7 +33,7 @@ body{
     height: 600px; */
     /* border: solid 1px black; */
     /* background-image: url(../images/done-building-with-crane.png); */
-    border: solid 3px red;
+    /* border: solid 3px red; */
     position: relative;
     animation-name: bar;
     animation-duration: 8s;
@@ -41,7 +41,7 @@ body{
     animation-play-state: paused;
 }
 #pipe2{
-    border: solid 3px red;
+    /* border: solid 3px red; */
     position: relative;
     left: 800px;
     animation-name: bar2;
