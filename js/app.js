@@ -8,6 +8,7 @@ const restart = document.querySelector("#restartButton");
 const building1 = document.querySelector("#building1");
 const building2 = document.querySelector("#building2");
 const building3 = document.querySelector("#building3");
+let score = document.querySelector("#counter")
 let jumping = 0;
 let counter = 0;
 
@@ -84,10 +85,12 @@ randomizeBuilding(building2, 2);
 pipe1.addEventListener("animationiteration", () => {
   randomizeBuilding(building1, 1);
   counter++;
+  score.textContent = counter
   // console.log("Building1" + counter)
   setTimeout(function(){
    randomizeBuilding(building2, 2);
    counter++
+   score.textContent = counter
   },4000)
   // console.log("building2" + counter)
 });
@@ -123,7 +126,7 @@ function jump() {
     // How many times it jumps within 10milliseconds
   }, 10);
 }
-// Lis tens for spacebar or arrowup to jump
+// Listens for spacebar or arrowup to jump
 window.addEventListener("keydown", (evt) => {
   if (evt.code === "Space" || evt.code === "ArrowUp") {
     jump();
@@ -139,17 +142,21 @@ start.addEventListener("click", (evt) => {
     let characterTop = parseInt(
       window.getComputedStyle(bird).getPropertyValue("top")
     );
+    let characterRight = parseInt(
+      window.getComputedStyle(bird).getPropertyValue("right")
+    );
     if (jumping == 0) {
       bird.style.top = characterTop + 2 + "px";
     }
-    // let pipeLeft = parseInt(
-    //   window.getComputedStyle(pipe).getPropertyValue("left")
-    // );
+    let pipeLeft = parseInt(
+      window.getComputedStyle(pipe1).getPropertyValue("left")
+    );
+    console.log(pipeLeft)
     // let openingTop = parseInt(
     //   window.getComputedStyle(opening).getPropertyValue("top")
     // );
     // let cTop = -(500 - characterTop);
-    if (characterTop > 533 || characterTop < 1) {
+    if (characterTop > 533 || characterTop < 1 ) {
       // if (bird falls to bottom) or ()
       // console.log("something");
       // alert("Game over. Score: "+(counter-1));
